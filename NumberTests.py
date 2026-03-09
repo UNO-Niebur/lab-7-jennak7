@@ -8,10 +8,59 @@ def isThreeOrFive(n):
   else:
     return False
 
+def getFactors(num):
+  """Returns a list of all factors of a given integer"""
+  factors = []
+  for f in range(1, num//2):
+    if num % f == 0: 
+      factors.append(f)
+  return factors 
+
 def isPrime(p):
   """Returns boolean (True/False) if the value given is prime."""
-
+  if p == 2: 
+    return True 
+  if isEven(p):
+    return False
+  for div in range(3, int(p ** 0.5) + 1): 
+    """Calculates square root and accounts for rounding of integer."""
+    if p % div == 0:
+      return False 
   return True
+
+def getPrimeFactors(num):
+  factors = getFactors(num) 
+  primeFactors = []
+  """Stores prime factors in an array"""
+  for factor in factors: 
+    if isPrime(factor):
+        primeFactors.append(factor)
+        """Appends prime factors to list in array"""
+
+  return primeFactors 
+
+def getPrimeSum(num): 
+  primeSum = 0
+  """Prime variable"""
+  for prime in range(2,num): 
+    if isPrime(prime):
+      primeSum += prime 
+        # primes.append(prime)
+      """Sums prime numbers below input number"""
+  return primeSum
+
+def prime_factorization(num):
+  factor = 2
+  while factor * factor <= num:
+    while num % factor == 0:
+      num //= factor
+    factor += 1
+  
+  if num > 1:
+    return num
+  else:
+    return None
+
 
 def isEven(n):
   """Returns boolean about given value being even."""
